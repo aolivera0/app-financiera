@@ -1,0 +1,94 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer components {
+    .styledInput {
+      @apply py-1.5 px-2.5 bg-neutral-600 rounded border-solid border-b border-neutral-800 text-neutral-200 w-full;
+    }
+
+    input[disabled] {
+      @apply py-1.5 px-2.5 bg-neutral-800 opacity-80 rounded text-neutral-400 border-b border-solid border-neutral-900 w-full;
+    }
+
+    input[type="radio"] + label {
+      @apply pl-2 text-neutral-200;
+    }
+
+    .card {
+      @apply flex gap-6 bg-neutral-600 py-6 px-10 rounded-md justify-center;
+    }
+
+    .card-col {
+      @apply flex flex-col gap-2 rounded-md items-start bg-neutral-700 py-4 px-6 lg:py-8 lg:px-10;
+    }
+
+    .resultados:hover,
+    .card-resultados:hover {
+      @apply scale-[1.02] transition-all ease-in-out;
+    }
+
+    .card--titulo {
+      @apply font-medium;
+    }
+
+    .card-resultados {
+      @apply flex flex-col gap-8 bg-neutral-600 rounded-md py-4 px-6 lg:py-6 lg:px-12;
+    }
+
+    .resultados {
+      @apply bg-teal-900 rounded-md py-4 px-6 lg:py-6 lg:px-10 text-sm md:text-base;
+    }
+  }
+
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: #13151a;
+    background-size: 224px;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+</style>
